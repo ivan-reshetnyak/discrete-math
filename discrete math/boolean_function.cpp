@@ -4,13 +4,14 @@
 
 #include <algorithm>
 #include <vector>
+#include <deque>
 #include <iostream>
 
 #include "boolean_function.h"
 
 namespace discr_math {
 
-boolean_function::signature::signature( int NoofArgs, long long InSignature ) 
+boolean_function::signature::signature( int NoofArgs, int InSignature ) 
       : NoofArgs(NoofArgs) {
   int Size = 1 << NoofArgs;
   resize(Size, 0);
@@ -71,7 +72,7 @@ boolean_function::truth_table::operator boolean_function::signature( void ) cons
   return Signature;
 }
 
-std::vector<bool> boolean_function::intToBoolVec( int NoofArgs, long long InSign ) {
+std::vector<bool> boolean_function::intToBoolVec( int NoofArgs, int InSign ) {
   std::vector<bool> Res;
   int Size = NoofArgs;
   Res.resize(Size, 0);
@@ -82,6 +83,16 @@ std::vector<bool> boolean_function::intToBoolVec( int NoofArgs, long long InSign
   }
 
   return Res;
+}
+
+int  boolean_function::binToGray( int Bin ) {
+  return Bin ^ (Bin >> 1);
+}
+
+void boolean_function::binToGray( std::vector<bool> &Binary ) {
+  Binary[0] = Binary[0] ^ false;
+  for (int Bit = 1, Size = Binary.size(); Bit < Size; Bit++)
+    Binary[Bit] = Binary[Bit] ^ Binary[Bit - 1];
 }
 
 boolean_function::boolean_function( const signature &Signature ) : Signature(Signature) {

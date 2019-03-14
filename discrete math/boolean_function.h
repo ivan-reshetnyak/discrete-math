@@ -7,14 +7,16 @@ namespace discr_math {
 
 class boolean_function {
 public:
-  static std::vector<bool> intToBoolVec( int NoofArgs, long long InArgs );
+  static std::vector<bool> intToBoolVec( int NoofArgs, int InArgs );
+  static int binToGray( int Bin );
+  static void binToGray( std::vector<bool> &Binary );
 
   class signature : public std::vector<bool> {
   private:
     int NoofArgs;
     friend std::ostream & operator<<( std::ostream &, const signature & );
   public:
-    signature( int NoofArgs, long long InSign );
+    signature( int NoofArgs, int InSign );
     int getNumArgs( void ) const;
   };
 
@@ -31,48 +33,44 @@ public:
     operator signature( void ) const;
   };
 
-  class normal_form {
-  public:
-    class element {
-    private:
-      int OperandNum;
-    public:
-      enum class type {
-        OPERAND, INVERSE_OPERAND, OPERATOR_OR, OPERATOR_AND, BRACKET_L, BRACKET_R
-      } Type;
-      element *Left, *Right;
-
-      element( type Type, element *L = nullptr, element *R = nullptr );
-      element( type Type, int OperandNum );
-      bool eval( const std::vector<bool> &Args ) const;
-    };
+  class ccnf {
   private:
-    void clear( element *&Node );
-  protected:
-    element *Root;
-    void clear( void );
-    bool operator()( const std::vector<bool> &Args ) const;
-    normal_form( void );
-    ~normal_form( void );
-  };
-
-  class ccnf : private normal_form {
-  private:
-    std::vector<element *> ArgsLinearized;
     signature Signature;
     friend std::ostream & operator<<( std::ostream &, const ccnf & );
+    using args = std::vector<bool>;
+    std::vector<args> Conjunctions;
+
   public:
     ccnf( const truth_table &Table );
     bool operator()( const std::vector<bool> &Args ) const;
   };
 
-  class cdnf : private normal_form {
+  class cdnf {
   private:
-    std::vector<element *> ArgsLinearized;
     signature Signature;
+    using args = std::vector<bool>;
+    std::vector<args> Disjunctions;
+
     friend std::ostream & operator<<( std::ostream &, const cdnf & );
   public:
     cdnf( const truth_table &Table );
+    bool operator()( const std::vector<bool> &Args ) const;
+  };
+
+  class rdnf {
+  private:
+    class operand {
+    public:
+      bool Value;
+      int Num;
+    };
+    signature Signature;
+    using args = std::vector<operand>;
+    std::vector<args> Disjunctions;
+
+    friend std::ostream & operator<<( std::ostream &, const rdnf & );
+  public:
+    rdnf( const truth_table &Table );
     bool operator()( const std::vector<bool> &Args ) const;
   };
 
@@ -86,5 +84,6 @@ std::ostream & operator<<( std::ostream &Stream, const boolean_function::signatu
 std::ostream & operator<<( std::ostream &Stream, const boolean_function::truth_table &Table );
 std::ostream & operator<<( std::ostream &Stream, const boolean_function::ccnf &Form );
 std::ostream & operator<<( std::ostream &Stream, const boolean_function::cdnf &Form );
+std::ostream & operator<<( std::ostream &Stream, const boolean_function::rdnf &Form );
 
 } // End of 'discr_math' namespace
