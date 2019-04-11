@@ -35,5 +35,11 @@
     <ClCompile Include="boolean_function_normal_forms.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="boolean_function_signature_conversions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="boolean_function_properties.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

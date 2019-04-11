@@ -105,24 +105,30 @@ boolean_function::rdnf::rdnf( const truth_table &Table ) : Signature(Table) {
   while (Changed) {
     Changed = false;
     NoofDisj = DisjTmp.size();
-    for (int i = 0; i < NoofDisj - 1; i++) 
-      if (DisjTmp[i].size() > 0 && DisjTmp[i + 1].size() == DisjTmp[i].size()) {
-        int Pos = 0, Diff = 0, Size = DisjTmp[i].size();
-        for (int j = 0; j < Size; j++)
-          if (DisjTmp[i][j].Value != DisjTmp[i + 1][j].Value) {
-            Pos = j;
-            Diff++;
+    for (int i = 0; i < NoofDisj - 1; i++)
+      if (DisjTmp[i].size() > 0) {
+        for (int j = i + 1; j < NoofDisj; j++) {
+          if  (DisjTmp[j].size() == DisjTmp[i].size()) {
+            int Pos = 0, Diff = 0, Size = DisjTmp[i].size();
+            for (int k = 0; k < Size; k++)
+              if (DisjTmp[i][k].Value != DisjTmp[j][k].Value) {
+                Pos = k;
+                Diff++;
+              }
+            if (Diff == 1) {
+              DisjTmp[i].erase(DisjTmp[i].begin() + (int)Pos);
+              DisjTmp.erase(DisjTmp.begin() + j);
+              Changed = true;
+              break;
+            } else if (Diff == Size) {
+              DisjTmp.erase(DisjTmp.begin() + j);
+              Changed = true;
+              break;
+            }
           }
-        if (Diff == 1) {
-          DisjTmp[i].erase(DisjTmp[i].begin() + (int)Pos);
-          DisjTmp.erase(DisjTmp.begin() + i + 1);
-          Changed = true;
-          break;
-        } else if (Diff == Size) {
-          DisjTmp.erase(DisjTmp.begin() + i + 1);
-          Changed = true;
-          break;
         }
+        if (Changed)
+          break;
       }
   }
 
