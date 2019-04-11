@@ -16,19 +16,19 @@ int main( int argc, char **argv ) {
   testing::InitGoogleTest(&argc, argv);
   RUN_ALL_TESTS();
 
-  //auto Sign = boolean_function::signature(std::vector<bool>({true, true, true, false}));
-  auto Sign = boolean_function::signature(NumOfArgs, SignatureInt);
+  auto Sign = boolean_function::signature(std::vector<bool>({true, true, true, false}));
+  //auto Sign = boolean_function::signature(NumOfArgs, SignatureInt);
   boolean_function Func(Sign);
   boolean_function::truth_table Table(Sign);
   //boolean_function Func(Signature);
 
-  cout << Func << endl << endl
-       << Table << endl << endl
-       << boolean_function::ccnf((boolean_function::signature)Func) << endl << endl
-       << boolean_function::cdnf((boolean_function::signature)Func) << endl << endl
-       << boolean_function::rdnf((boolean_function::signature)Func) << endl << endl
-       << boolean_function::karnaugh_map((boolean_function::signature)Func) << endl << endl
-       << boolean_function::zhegalkin_poly((boolean_function::signature)Func) << endl << endl;
+  //cout << Func << endl << endl
+  //     << Table << endl << endl
+  //     << boolean_function::ccnf((boolean_function::signature)Func) << endl << endl
+  //     << boolean_function::cdnf((boolean_function::signature)Func) << endl << endl
+  //     << boolean_function::rdnf((boolean_function::signature)Func) << endl << endl
+  //     << boolean_function::karnaugh_map((boolean_function::signature)Func) << endl << endl
+  //     << boolean_function::zhegalkin_poly((boolean_function::signature)Func) << endl << endl;
 
   if (Func.isZeroSaving())
     cout << "Saves zero" << endl;
