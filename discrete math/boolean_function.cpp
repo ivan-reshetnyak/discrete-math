@@ -13,6 +13,11 @@
 
 namespace discr_math {
 
+boolean_function::signature::signature( const std::vector<bool> &InVec ) : std::vector<bool>(InVec) {
+  this->NoofArgs = (int)log2(size());
+  resize(1 << NoofArgs);
+}
+
 boolean_function::signature::signature( int NoofArgs, int InSignature ) 
       : NoofArgs(NoofArgs) {
   int Size = 1 << NoofArgs;
@@ -159,7 +164,7 @@ boolean_function::zhegalkin_poly::zhegalkin_poly( const truth_table &Table ) : S
   std::vector<bool> Column = (signature)Table;
 
   if (Column[0])
-    Xors.push_back(boolean_function::intToBoolVec(Table.getNumArgs(), MaxSize - 1));
+    Xors.push_back(boolean_function::intToBoolVec(Table.getNumArgs(), 0));
   for (int Size = MaxSize, ColNum = 1; Size > 1; Size--, ColNum++) {
     for (int i = 0; i < Size - 1; i++)
       Column[i] = Column[i] ^ Column[i + 1];

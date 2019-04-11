@@ -9,15 +9,16 @@ using std::cout;
 using std::endl;
 
 static const int
-  NumOfArgs = 2,
-  SignatureInt = 8;//(16 + 192) * (1 << (NumOfArgs - 3));
+  NumOfArgs = 10,
+  SignatureInt = (16 + 192) * (1 << (NumOfArgs - 3));
 
 int main( int argc, char **argv ) {
   testing::InitGoogleTest(&argc, argv);
   RUN_ALL_TESTS();
 
-  boolean_function Func(boolean_function::signature(NumOfArgs, SignatureInt));
-  auto Sign = boolean_function::signature(Func);
+  //auto Sign = boolean_function::signature(std::vector<bool>({true, true, true, false}));
+  auto Sign = boolean_function::signature(NumOfArgs, SignatureInt);
+  boolean_function Func(Sign);
   boolean_function::truth_table Table(Sign);
   //boolean_function Func(Signature);
 

@@ -18,6 +18,7 @@ public:
     friend std::ostream & operator<<( std::ostream &, const signature & );
   public:
     signature( int NoofArgs, int InSign );
+    signature( const std::vector<bool> & );
     int getNumArgs( void ) const;
   };
 
