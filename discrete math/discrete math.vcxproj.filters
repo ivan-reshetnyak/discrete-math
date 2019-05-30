@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Boolean Functions">
+      <UniqueIdentifier>{5dd6ae4a-dcd9-4926-acb7-3364ac5f9cd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -22,24 +25,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="boolean_function.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Boolean Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="binary.h">
+      <Filter>Source Files\Boolean Functions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="binary.cpp">
+      <Filter>Source Files\Boolean Functions</Filter>
+    </ClCompile>
     <ClCompile Include="boolean_function.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Boolean Functions</Filter>
     </ClCompile>
     <ClCompile Include="boolean_function_normal_forms.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="boolean_function_signature_conversions.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Boolean Functions</Filter>
     </ClCompile>
     <ClCompile Include="boolean_function_properties.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Boolean Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="boolean_function_signature_conversions.cpp">
+      <Filter>Source Files\Boolean Functions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

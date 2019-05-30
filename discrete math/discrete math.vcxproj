@@ -156,10 +156,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="boolean_function.h" />
+    <ClInclude Include="binary.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="binary.cpp" />
     <ClCompile Include="boolean_function.cpp" />
     <ClCompile Include="boolean_function_normal_forms.cpp" />
     <ClCompile Include="boolean_function_properties.cpp" />

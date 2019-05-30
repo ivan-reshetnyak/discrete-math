@@ -108,8 +108,8 @@ public:
 private:
   signature Signature;
 public:
-  std::vector<bool> one( void ) const { return std::vector<bool>(Signature.getNumArgs(), 1); }
-  std::vector<bool> zero( void ) const { return std::vector<bool>(Signature.getNumArgs(), 0); }
+  std::vector<bool> one( void ) const { return std::vector<bool>(1 << Signature.getNumArgs(), 1); }
+  std::vector<bool> zero( void ) const { return std::vector<bool>(1 << Signature.getNumArgs(), 0); }
   std::vector<bool> intToBoolVec( int InArgs ) { return intToBoolVec(Signature.getNumArgs(), InArgs); }
   operator signature( void ) const;
   std::vector<bool>::reference operator[]( const std::vector<bool> &Args );

@@ -2,6 +2,7 @@
 #include <conio.h>
 
 #include <gtest/gtest.h>
+#include "../discrete math/binary.h"
 #include "../discrete math/boolean_function.h"
 
 using namespace discr_math;
@@ -16,10 +17,19 @@ int main( int argc, char **argv ) {
   testing::InitGoogleTest(&argc, argv);
   RUN_ALL_TESTS();
 
-  auto Sign = boolean_function::signature(std::vector<bool>({true, true, true, false}));
+  binary Sign(2);
+  cout << (int)Sign << endl;
+  ++Sign;
+  cout << (int)Sign << endl;
+  Sign *= 2;
+  cout << (int)Sign << endl;
+  Sign = 2;
+  cout << (int)Sign.pow(10) << endl;
+
+  //auto Sign = boolean_function::signature(std::vector<bool>({true, true, true, false}));
   //auto Sign = boolean_function::signature(NumOfArgs, SignatureInt);
-  boolean_function Func(Sign);
-  boolean_function::truth_table Table(Sign);
+  //boolean_function Func(Sign);
+  //boolean_function::truth_table Table(Sign);
   //boolean_function Func(Signature);
 
   //cout << Func << endl << endl
@@ -30,22 +40,33 @@ int main( int argc, char **argv ) {
   //     << boolean_function::karnaugh_map((boolean_function::signature)Func) << endl << endl
   //     << boolean_function::zhegalkin_poly((boolean_function::signature)Func) << endl << endl;
 
-  if (Func.isZeroSaving())
-    cout << "Saves zero" << endl;
-  if (Func.isOneSaving())
-    cout << "Saves one" << endl;
-  if (Func.isSelfDual())
-    cout << "Self-Dual" << endl;
-  if (Func.isMonotonous())
-    cout << "Monotonous" << endl;
-  if (Func.isSymmetric())
-    cout << "Symmetric" << endl;
+  //if (Func.isZeroSaving())
+  //  cout << "Saves zero" << endl;
+  //if (Func.isOneSaving())
+  //  cout << "Saves one" << endl;
+  //if (Func.isSelfDual())
+  //  cout << "Self-Dual" << endl;
+  //if (Func.isMonotonous())
+  //  cout << "Monotonous" << endl;
+  //if (Func.isSymmetric())
+  //  cout << "Symmetric" << endl;
 
   _getch();
 
   return 0;
 }
 
+#if 0
+
+TEST( rndn, ccnf ) {
+  boolean_function Func1(boolean_function::signature(10, 0));
+  boolean_function Func(boolean_function::signature(Func1.one()));
+
+  boolean_function::rdnf R((boolean_function::signature)Func);
+  cout << R << endl;
+}
+
+/*
 TEST( truth_table_comparison, ccnf ) {
   boolean_function::signature Signature(NumOfArgs, SignatureInt);
   boolean_function::truth_table TruthTable(Signature);
@@ -100,3 +121,5 @@ TEST( truth_table_comparison, zhegalkin ) {
     ASSERT_TRUE(Poly(ArgsVec) == TruthTable(ArgsVec));
   }
 }
+*/
+#endif
